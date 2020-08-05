@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import CartItem from "./CartItem";
 import Button from "../Button";
+import { getStoreItemArray } from "../../reducers";
 
 const Cart = () => {
+  const state = useSelector((state) => state);
+  const storeItems = useSelector(getStoreItemArray);
+  console.log(storeItems);
   return (
     <Wrapper>
       <h2 style={{ padding: "10px 30px 0px" }}>Your Cart</h2>
-      <ItemsInCart>1 Item</ItemsInCart>
+      <ItemsInCart>{storeItems.length} Item</ItemsInCart>
       <ul>
-        <CartItem />
+        {storeItems.map((item) => {
+          return <CartItem item={item} />;
+        })}
       </ul>
       <CheckOut>
         <p>
@@ -32,14 +39,12 @@ const Wrapper = styled.div`
   color: white;
   background-color: #3c2241;
   ul {
-    display: flex;
     padding: 15px;
   }
 `;
 
 const CheckOut = styled.div`
   display: flex;
-  position: absolute;
   align-items: center;
   bottom: 20px;
   justify-content: space-evenly;

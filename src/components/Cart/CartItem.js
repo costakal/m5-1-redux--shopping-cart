@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
   return (
     <ItemWrapper>
       <ItemDetails>
-        <h2>Fake Stickers!</h2>
+        <h2>{item.id}</h2>
         <button>X</button>
       </ItemDetails>
       <Quantity>

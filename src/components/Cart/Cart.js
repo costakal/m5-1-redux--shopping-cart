@@ -29,7 +29,7 @@ const Cart = () => {
       <CheckOut>
         <p>
           Total:
-          <span>${totalPrice}</span>
+          <span>${totalPrice / 100}</span>
         </p>
         <Button style={{ height: "40px", width: "120px" }}>Purchase</Button>
       </CheckOut>

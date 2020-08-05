@@ -9,7 +9,7 @@ import { getStoreItemArray } from "../../reducers";
 const Cart = () => {
   const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
-  console.log(storeItems);
+
   return (
     <Wrapper>
       <h2 style={{ padding: "10px 30px 0px" }}>Your Cart</h2>

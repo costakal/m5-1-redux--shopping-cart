@@ -11,6 +11,13 @@ export default function cartReducer(state = initialState, action) {
         },
       };
     }
+    case "REMOVE_ITEM": {
+      let stateCopy = { ...state };
+      delete stateCopy[action.item.id];
+      return {
+        ...stateCopy,
+      };
+    }
     default:
       return state;
   }

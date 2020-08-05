@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
+import { removeItem } from "../../actions";
 
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
   return (
     <ItemWrapper>
       <ItemDetails>
-        <h2>{item.id}</h2>
-        <button>X</button>
+        <h2>{item.title}</h2>
+        <button onClick={() => dispatch(removeItem(item))}>X</button>
       </ItemDetails>
       <Quantity>
-        Quantity: <span>1</span>
+        Quantity: <span>{item.quantity}</span>
       </Quantity>
     </ItemWrapper>
   );

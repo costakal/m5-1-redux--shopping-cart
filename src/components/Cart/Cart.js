@@ -9,11 +9,18 @@ import { getStoreItemArray } from "../../reducers";
 const Cart = () => {
   const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
+  let totalQuantity = 0;
+  let totalPrice = 0;
+
+  storeItems.forEach((item) => {
+    totalQuantity += item.quantity;
+    totalPrice += item.price * item.quantity;
+  });
 
   return (
     <Wrapper>
       <h2 style={{ padding: "10px 30px 0px" }}>Your Cart</h2>
-      <ItemsInCart>{storeItems.length} Item</ItemsInCart>
+      <ItemsInCart>{totalQuantity} Item</ItemsInCart>
       <ul>
         {storeItems.map((item) => {
           return <CartItem item={item} />;
@@ -21,7 +28,8 @@ const Cart = () => {
       </ul>
       <CheckOut>
         <p>
-          Total: <span>$12.34</span>
+          Total:
+          <span>${totalPrice}</span>
         </p>
         <Button style={{ height: "40px", width: "120px" }}>Purchase</Button>
       </CheckOut>
@@ -33,6 +41,7 @@ export default Cart;
 
 const Wrapper = styled.div`
   position: fixed;
+  overflow: auto;
   height: 100vh;
   width: 24.5%;
   right: 0;

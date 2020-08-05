@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 import { removeItem } from "../../actions";
+import { updateQuantity } from "../../actions";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,18 @@ const CartItem = ({ item }) => {
         <button onClick={() => dispatch(removeItem(item))}>X</button>
       </ItemDetails>
       <Quantity>
-        Quantity: <span>{item.quantity}</span>
+        <label>Quantity</label>
+        <input
+          value={item.quantity}
+          onChange={(ev) => {
+            dispatch(
+              updateQuantity({
+                ...item,
+                quantity: parseInt(ev.target.value) || 0,
+              })
+            );
+          }}
+        ></input>
       </Quantity>
     </ItemWrapper>
   );
@@ -44,8 +56,10 @@ const Quantity = styled.p`
   font-size: 14px;
   margin: 0px;
   padding: 10px;
-  span {
-    padding: 4px 8px;
+  input {
+    padding-left: 6px;
+    height: 25px;
+    width: 30px;
     background-color: white;
     color: black;
   }
